@@ -24,9 +24,9 @@ namespace HttpClientSample
 
             var requestData = new
             {
-                Name = name,
-                Email = email,
-                Password = password
+                name = name,
+                email = email,
+                password = password
             };
 
             var content = new StringContent(
