@@ -19,12 +19,14 @@ namespace oopExample
             itGuy.developSystem();
             Console.WriteLine("----------------");
 
-            Security securityGuy = new Security() {
-                                                    name = "Nihal", surname = "Yılmaz",
-                                                    age = 35, phone = 55546454667,
-                                                    mailAddress = "sec@abc.edu.tr",
-                                                    shift = "none", doorNo= 1, card="standard"
-                                                  };
+            Security securityGuy = new Security() 
+            {
+            name = "Nihal", 
+                surname = "Yılmaz",
+            age = 35, phone = 55546454667,
+           mailAddress = "sec@abc.edu.tr",
+           shift = "none", doorNo= 1, card="standard"
+             };
             Console.WriteLine("----Security GUY---");
             securityGuy.enter();
             securityGuy.shiftInfo();
