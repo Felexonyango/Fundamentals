@@ -22,7 +22,7 @@ namespace AsyncAwaitSample
             catch (HttpRequestException ex)
             {
                 Console.WriteLine($"An HTTP request error occurred: {ex.Message}");
-                throw;
+                throw ex;
             }
         }
 
@@ -34,31 +34,34 @@ namespace AsyncAwaitSample
         Instagram
     }
     class Program
-    {
+    { 
         static async Task Main(string[] args)
         {
           Employee employee = new Employee();
 
             var result = await employee.GetDataAsync();
-          /*    Console.WriteLine(result);*/
-           //NULL checker
-            int? maybe = 12;
+            Console.WriteLine(result);
 
-            if (maybe is int number)
-            {
-                Console.WriteLine($"The nullable int 'maybe' has the value {number}");
-            }
-            else
-            {
-                Console.WriteLine("The nullable int 'maybe' doesn't hold a value");
-            }
+            //NULL checker
+            /*   int? maybe = 12;
+
+               if (maybe is int number)
+               {
+                   Console.WriteLine($"The nullable int 'maybe' has the value {number}");
+               }
+               else
+               {
+                   Console.WriteLine("The nullable int 'maybe' doesn't hold a value");
+               }*/
             //Enums
-         /*   The Enum.GetValues<TEnum>() is a static method that retrieves an 
-                array of the constant values of the specified enum.*/
-            foreach (var name in Enum.GetNames(typeof(SocialNetworks)))
-            {
-                Console.WriteLine(name);
-            }
+            /*   The Enum.GetValues<TEnum>() is a static method that retrieves an 
+                   array of the constant values of the specified enum.*/
+            /* foreach (var name in Enum.GetNames(typeof(SocialNetworks)))
+             {
+                 Console.WriteLine(name);
+             }*/
+
+            Console.ReadKey();
 
         }
     }

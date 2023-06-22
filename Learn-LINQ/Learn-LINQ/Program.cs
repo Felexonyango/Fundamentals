@@ -6,17 +6,14 @@ class Learn
     static void Main(string[] args)
     {
         //LIST
-        List<String> food = new List<String>()
-        {
-         food.Add('Orange');
-        food.Add("Tea");
-        food.Add("Pizza");
-    }
+        List<String> food = new List<String>();
         
-          
+            food.Add('Orange');
+            food.Add("Tea");
+            food.Add("Pizza");
 
        
-        foreach (String data in food)
+        foreach (String data in food) 
         {
             
             Console.WriteLine(data);
