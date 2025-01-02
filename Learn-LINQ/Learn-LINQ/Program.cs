@@ -1,41 +1,92 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 class Learn
 {
     static void Main(string[] args)
     {
-        //LIST
-        List<String> food = new List<String>();
-        
-            food.Add('Orange');
-            food.Add("Tea");
-            food.Add("Pizza");
-
-       
-        foreach (String data in food) 
+        // Collection of employees
+        var employees = new List<Employee>
         {
-            
-            Console.WriteLine(data);
+            new Employee { Id = 1, Name = "Alice", DepartmentId = 101 },
+            new Employee { Id = 2, Name = "Bob", DepartmentId = 102 },
+            new Employee { Id = 3, Name = "Charlie", DepartmentId = 101 },
+        };
+
+        // Collection of departments
+        var departments = new List<Department>
+        {
+            new Department { Id = 101, Name = "HR" },
+            new Department { Id = 102, Name = "Finance" },
+        };
+
+        //GroupBy
+
+        var groupedByData = employees.GroupBy(emp => emp.DepartmentId);
+
+        foreach (var item in groupedByData)
+        {
+
+            foreach (var emp in item)
+            {
+                
+                Console.WriteLine(emp.Name);
+            }
         }
 
 
-        int[] arrayData = { 1, 2, 3 };
+        // Using LINQ Join to combine employees and departments
+        //var employeeDetails = employees.Join   (
+        //    departments,                      
+        //    emp => emp.DepartmentId,          
+        //    dept => dept.Id,                 
+        //    (emp, dept) => new                
+        //    {
+        //        EmployeeName = emp.Name,
+        //        DepartmentName = dept.Name
+        //    });
 
-        double[] doublesArray = { 0.3, 0.1, 7.0 };
+        // Display the results
+        //foreach (var detail in employeeDetails)
+        //{
+        //    Console.WriteLine($"Employee: {detail.EmployeeName}, Department: {detail.DepartmentName}");
+        //}
 
-        displayData(arrayData);
-        displayData(doublesArray);
-      
-  
+        //GroupJoin 
+        var groupedData = departments.GroupJoin(
+          employees,                     
+          dept => dept.Id,              
+          emp => emp.DepartmentId,       
+          (dept, empGroup) => new        
+          {
+              DepartmentName = dept.Name,
+              Employees = empGroup
+          });
 
-    }
-    public static void displayData<Tdata>(Tdata[] array)
-    {
-        foreach(Tdata item in array)
+        // Display the grouped results
+        foreach (var group in groupedData)
         {
-
-            Console.WriteLine(item);
+            Console.WriteLine($"Department: {group.DepartmentName}");
+            foreach (var emp in group.Employees)
+            {
+                Console.WriteLine($"  Employee: {emp.Name}");
+            }
         }
     }
+}
+
+// Employee class
+class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int DepartmentId { get; set; }
+}
+
+// Department class
+class Department
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
 }
